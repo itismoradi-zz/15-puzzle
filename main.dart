@@ -1,17 +1,30 @@
 //15 puzzle console game
 import 'dart:io';
+import 'dart:math';
 
 bool gameOver = false;
 
 class Board{
     List table = [ 
-        [ 1,  2,  3,  4],
-        [ 5,  6,  7,  8],
-        [ 9, 10, 11, 12],
-        [13, 14, 15, 16]
+        [ -1,  -2,  -3,  -4],
+        [ -5,  -6,  -7,  -8],
+        [ -9, -10, -11, -12],
+        [-13, -14, -15, -16]
     ];
 
     Command command = Command.UP;
+
+    bool isRepeated(int number){
+        for (int i = 0; i < 4; i++) {   //row traversal
+            for (int j = 0; j < 4; j++) {   //column traversal
+                if(table[i][j] == number){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 enum Command {
@@ -22,8 +35,8 @@ enum Command {
 }
 
 main(){
-    setup();
     Board board = new Board();
+    setup(board);
 
     while (gameOver == false) {
         display(board);
@@ -33,8 +46,24 @@ main(){
 }
 
 // only call in start of game
-void setup(){
+void setup(Board board){
     print('===== 15 puzzle =====');
+
+    // Generate rendom order of cells numbers
+    var randomEngine = Random();
+    int r;  // Generated random number
+
+    for (int i = 0; i < 4; i++) {   //row traversal
+        for (int j = 0; j < 4; j++) {   //column traversal
+            do {  
+                //Avoid inserting duplicate element in cell numbers
+                r = randomEngine.nextInt(16) + 1;
+            }
+            while (board.isRepeated(r));
+
+            board.table[i][j] = r;
+        }
+    }
 }
 
 void display(Board board){
