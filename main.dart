@@ -2,7 +2,7 @@
 import 'dart:io';
 import 'dart:math';
 
-bool gameOver = false;
+bool gameFinished = false;
 
 class Board{
     List table = [ 
@@ -38,7 +38,7 @@ main(){
     Board board = new Board();
     setup(board);
 
-    while (gameOver == false) {
+    while (gameFinished == false) {
         display(board);
         board.command = input();
         logic(board);
@@ -115,5 +115,5 @@ Command input(){
 }
 
 void logic(Board board){
-    gameOver = true;
+    gameFinished = true;
 }
