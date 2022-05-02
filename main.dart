@@ -74,10 +74,19 @@ void display(Board board){
         stdout.write('| ');
         //print 4 cells in any row
         for (var j = 0; j < 4; j++) {
-            if(board.table[i][j] < 10){
-                stdout.write(' ');
+            int cellNumber = board.table[i][j];
+
+            if(cellNumber == 16){   // Empty cell
+                stdout.write('  '); 
             }
-            stdout.write(board.table[i][j]);
+            else{
+                if(cellNumber < 10){
+                    stdout.write(' ');
+            }
+
+            stdout.write(cellNumber);
+            }
+            
             stdout.write(' | ');
         }
 
