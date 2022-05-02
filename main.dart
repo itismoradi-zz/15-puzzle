@@ -25,6 +25,22 @@ class Board{
 
         return false;
     }
+
+    Map <int, int> emptyCellPosition(){
+        Map <int, int> position = {};
+        int i, j;
+
+        for (i = 0; i < 4; i++) {   //row traversal
+            for (j = 0; j < 4; j++) {   //column traversal
+                if(table[i][j] == 16)
+                {
+                    position[i] = j;
+                }
+            }
+        }
+
+        return position;
+    }
 }
 
 enum Command {
@@ -115,5 +131,9 @@ Command input(){
 }
 
 void logic(Board board){
+    Map <int, int> position = board.emptyCellPosition();
+    int? i = position.keys.first;
+    int? j = position[i];
+    
     gameFinished = true;
 }
