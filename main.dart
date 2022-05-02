@@ -2,8 +2,6 @@
 import 'dart:io';
 import 'dart:math';
 
-bool gameFinished = false;
-
 class Board{
     List table = [ 
         [ -1,  -2,  -3,  -4],
@@ -41,6 +39,19 @@ class Board{
 
         return position;
     }
+
+    bool isWin(){
+        for (int i = 0; i < 4; i++) {   //row traversal
+            for (int j = 0; j < 4; j++) {   //column traversal
+                if(table[i][j] == 16)
+                {
+                    position[i] = j;
+                }
+            }
+        }
+
+        return true;
+    }
 }
 
 enum Command {
@@ -54,7 +65,7 @@ main(){
     Board board = new Board();
     setup(board);
 
-    while (gameFinished == false) {
+    while (board.isWin() == false) {
         display(board);
         board.command = input();
         logic(board);
@@ -134,6 +145,4 @@ void logic(Board board){
     Map <int, int> position = board.emptyCellPosition();
     int? i = position.keys.first;
     int? j = position[i];
-    
-    gameFinished = true;
 }
