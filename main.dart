@@ -40,12 +40,20 @@ class Board{
         return position;
     }
 
+    void swapCells(int x1, int? y1, int x2, int? y2){
+        int temp;
+        temp = table[x1][y1];
+        table[x1][y1] = table[x2][y2];
+        table[x2][y2] = temp;
+    }
+
     bool isWin(){
         for (int i = 0; i < 4; i++) {   //row traversal
             for (int j = 0; j < 4; j++) {   //column traversal
-                if(table[i][j] == 16)
+                int index = ((i) * 4) + j + 1;
+                if(table[i][j] != index)
                 {
-                    position[i] = j;
+                    return false;
                 }
             }
         }
@@ -94,6 +102,7 @@ void setup(Board board){
 }
 
 void display(Board board){
+    //clearScreen();
     print('---------------------'); 
 
     for (var i = 0; i < 4; i++){
@@ -145,4 +154,33 @@ void logic(Board board){
     Map <int, int> position = board.emptyCellPosition();
     int? i = position.keys.first;
     int? j = position[i];
+
+    if(board.command == Command.UP){
+        if(i == 3)  return;
+        board.swapCells(i, j, i+1, j);
+    }
+    else if(board.command == Command.DOWN){
+        if(i == 0)  return;
+        board.swapCells(i, j, i-1, j);
+    }
+    else if(board.command == Command.RIGHT){
+        if(j == 0)  return;
+        if (j != null) {
+            board.swapCells(i, j, i, j.toInt() - 1);
+        }
+    }
+    else if(board.command == Command.LEFT){
+        if(j == 3)  return;
+        if (j != null) {
+            board.swapCells(i, j, i, j.toInt() + 1);
+        }
+    }
+}
+
+void clearScreen(){
+    if(Platform.isWindows) {
+        print(Process.runSync("cls", [], runInShell: true).stdout); 
+    } else {
+        print(Process.runSync("clear", [], runInShell: true).stdout);
+    }
 }
