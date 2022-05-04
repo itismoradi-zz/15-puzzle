@@ -10,7 +10,7 @@ class Board{
         [-13, -14, -15, -16]
     ];
 
-    Command command = Command.UP;
+    Command command = Command.STOP;
 
     bool isRepeated(int number){
         for (int i = 0; i < 4; i++) {   //row traversal
@@ -66,7 +66,8 @@ enum Command {
     UP,
     DOWN,
     RIGHT,
-    LEFT
+    LEFT,
+    STOP
 }
 
 main(){
@@ -132,7 +133,7 @@ void display(Board board){
 
 Command input(){
     String? key = stdin.readLineSync();
-    Command command = Command.UP;
+    Command command = Command.STOP;
 
     if(key == 'w' || key == 'W'){
         command = Command.UP;
