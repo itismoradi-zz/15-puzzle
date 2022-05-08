@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:math';
 //import 'package:win32/win32.dart';
 
-const bool testMode = false;
+const bool testMode = true;
 
 class Board{
     List table = [
@@ -12,18 +12,6 @@ class Board{
         [ 9, 10, 11, 12],
         [13, 14, 15, 16]
     ];
-
-    bool isRepeated(int number){
-        for (int i = 0; i < 4; i++) {   //row traversal
-            for (int j = 0; j < 4; j++) {   //column traversal
-                if(table[i][j] == number){
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
 
     Map <int, int> emptyCellPosition(){
         Map <int, int> position = {};
@@ -94,18 +82,18 @@ void setup(Board board){
     var randomEngine = Random();
     int randomNumber;  // Generated random number
 
-    const int iterationsCount = testMode ? 1 : 500;
+    const int iterationsCount = testMode ? 0 : 500;
     Command lastCommand = Command.STOP;
 
     for (int i = 0; i < iterationsCount; i++) {   //row traversal
         randomNumber =  randomEngine.nextInt(4);
         Command randomCommand = intToCommand(randomNumber);
         
-        if (lastCommand != randomCommand){
+        if (lastCommand != randomCommand){  //prevent duplicated move cells
             logic(board, randomCommand);
             lastCommand = randomCommand;
         } else {
-            i--;
+            i--;    //Surely this puzzle has been moved 500 times
         }
     }
 }
