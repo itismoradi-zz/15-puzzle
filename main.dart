@@ -71,16 +71,15 @@ enum Command {
     STOP
 }
 
-Command command = Command.STOP;
-
 main(){
     Board board = new Board();
+    Command command = Command.STOP;
     setup(board);
 
     while (board.isWin() == false) {
         display(board);
         command = input();
-        logic(board);
+        logic(board, command);
     }
 
     display(board);
@@ -95,12 +94,19 @@ void setup(Board board){
     var randomEngine = Random();
     int randomNumber;  // Generated random number
 
-    const int iterationsCount = testMode ? 1 : 100;
+    const int iterationsCount = testMode ? 1 : 500;
+    Command lastCommand = Command.STOP;
 
     for (int i = 0; i < iterationsCount; i++) {   //row traversal
-       randomNumber =  randomEngine.nextInt(4);
-       command = intToCommand(randomNumber);
-       logic(board);
+        randomNumber =  randomEngine.nextInt(4);
+        Command randomCommand = intToCommand(randomNumber);
+        
+        if (lastCommand != randomCommand){
+            logic(board, randomCommand);
+            lastCommand = randomCommand;
+        } else {
+            i--;
+        }
     }
 }
 
@@ -163,7 +169,7 @@ Command input(){
     return command;
 }
 
-void logic(Board board){
+void logic(Board board, Command command){
     Map <int, int> position = board.emptyCellPosition();
     int? i = position.keys.first;
     int? j = position[i];
