@@ -125,9 +125,9 @@ void display(Board board){
             else{
                 if(cellNumber < 10){
                     stdout.write(' ');
-            }
+                }
 
-            stdout.write(cellNumber);
+                stdout.write(cellNumber);
             }
             
             stdout.write(' | ');
