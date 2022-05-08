@@ -1,16 +1,17 @@
 //15 puzzle console game
 import 'dart:io';
 import 'dart:math';
+//import 'package:win32/win32.dart';
+
+const bool testMode = false;
 
 class Board{
-    List table = [ 
-        [ -1,  -2,  -3,  -4],
-        [ -5,  -6,  -7,  -8],
-        [ -9, -10, -11, -12],
-        [-13, -14, -15, -16]
+    List table = [
+        [ 1,  2,  3,  4],
+        [ 5,  6,  7,  8],
+        [ 9, 10, 11, 12],
+        [13, 14, 15, 16]
     ];
-
-    Command command = Command.STOP;
 
     bool isRepeated(int number){
         for (int i = 0; i < 4; i++) {   //row traversal
@@ -70,15 +71,20 @@ enum Command {
     STOP
 }
 
+Command command = Command.STOP;
+
 main(){
     Board board = new Board();
     setup(board);
 
     while (board.isWin() == false) {
         display(board);
-        board.command = input();
+        command = input();
         logic(board);
     }
+
+    display(board);
+    print("Game Finished!");
 }
 
 // only call in start of game
@@ -87,18 +93,24 @@ void setup(Board board){
 
     // Generate rendom order of cells numbers
     var randomEngine = Random();
-    int r;  // Generated random number
+    int randomNumber;  // Generated random number
 
-    for (int i = 0; i < 4; i++) {   //row traversal
-        for (int j = 0; j < 4; j++) {   //column traversal
-            do {  
-                //Avoid inserting duplicate element in cell numbers
-                r = randomEngine.nextInt(16) + 1;
-            }
-            while (board.isRepeated(r));
+    const int iterationsCount = testMode ? 1 : 100;
 
-            board.table[i][j] = r;
-        }
+    for (int i = 0; i < iterationsCount; i++) {   //row traversal
+       randomNumber =  randomEngine.nextInt(4);
+       command = intToCommand(randomNumber);
+       logic(board);
+    }
+}
+
+Command intToCommand(int number) {
+    switch (number) {
+      case 0: return Command.UP;
+      case 1: return Command.DOWN;
+      case 2: return Command.RIGHT;
+      case 3: return Command.LEFT;
+      default:  return Command.STOP;
     }
 }
 
@@ -156,21 +168,21 @@ void logic(Board board){
     int? i = position.keys.first;
     int? j = position[i];
 
-    if(board.command == Command.UP){
+    if(command == Command.UP){
         if(i == 3)  return;
         board.swapCells(i, j, i+1, j);
     }
-    else if(board.command == Command.DOWN){
+    else if(command == Command.DOWN){
         if(i == 0)  return;
         board.swapCells(i, j, i-1, j);
     }
-    else if(board.command == Command.RIGHT){
+    else if(command == Command.RIGHT){
         if(j == 0)  return;
         if (j != null) {
             board.swapCells(i, j, i, j.toInt() - 1);
         }
     }
-    else if(board.command == Command.LEFT){
+    else if(command == Command.LEFT){
         if(j == 3)  return;
         if (j != null) {
             board.swapCells(i, j, i, j.toInt() + 1);
