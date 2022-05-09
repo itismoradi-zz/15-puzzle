@@ -45,8 +45,16 @@ class Board:
                     self.board[i][j] is not '  ' and self.board[i][j] < 10) else f'| {self.board[i][j]} ', end='')
             print('|')
         print('-' * length_of_table)
+    def find_empty(self):
+        for row in range(4):
+            if '  ' in self.board[row]:
+                return row, self.board[row].index('  ')
 
+# def move(b, direction):
+#     x, y = b.find_empty()
+#     dirs = {'w': b.swap_up, 's': b.swap_down, 'a': b.swap_left, 'd': b.swap_right}
 
 b = Board()
 b.shuffle()
 b.display()
+move(b, 1)
