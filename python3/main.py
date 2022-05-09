@@ -67,7 +67,9 @@ def validate(b):
 b = Board()
 b.shuffle()
 b.display()
+
 while not validate(b):
     _inp = input('Enter direction: ')
     move(b, _inp)
     b.display()
+# print('You win!')
