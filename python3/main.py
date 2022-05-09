@@ -50,11 +50,14 @@ class Board:
             if '  ' in self.board[row]:
                 return row, self.board[row].index('  ')
 
-# def move(b, direction):
-#     x, y = b.find_empty()
-#     dirs = {'w': b.swap_up, 's': b.swap_down, 'a': b.swap_left, 'd': b.swap_right}
-
+def move(b, direction):
+    x, y = b.find_empty()
+    dirs = {'w': b.swap_up, 's': b.swap_down, 'a': b.swap_left, 'd': b.swap_right}
+    dirs[direction](x, y)
+    
 b = Board()
 b.shuffle()
 b.display()
-move(b, 1)
+move(b, 'w')
+sleep(2)
+b.display()
