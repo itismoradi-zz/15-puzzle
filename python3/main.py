@@ -11,7 +11,7 @@ class Board:
                       [13, 14, 15, '  ']]
 
     def swap_up(self, x, y):
-        if x > 0 and y > 0:
+        if x != 0:
             self.board[x][y], self.board[x - 1][y] = self.board[x - 1][y], self.board[x][y]
         return self.board
     
@@ -21,7 +21,8 @@ class Board:
         return self.board
         
     def swap_left(self, x, y):
-        self.board[x][y], self.board[x][y - 1] = self.board[x][y - 1], self.board[x][y]
+        if y != 0:
+            self.board[x][y], self.board[x][y - 1] = self.board[x][y - 1], self.board[x][y]
         return self.board
     
     def swap_right(self, x, y):
@@ -62,10 +63,7 @@ def move(b, direction):
 b = Board()
 b.shuffle()
 b.display()
-move(b, 'd')
-sleep(2)
-b.display()
-# while True:
-#     _inp = input('Enter direction: ')
-#     move(b, _inp)
-#     b.display()
+while True:
+    _inp = input('Enter direction: ')
+    move(b, _inp)
+    b.display()
