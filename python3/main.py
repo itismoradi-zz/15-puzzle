@@ -54,12 +54,12 @@ class Board:
                 return row, self.board[row].index('  ')
 
 def move(b, direction):
-    dirs = {'w': b.swap_up, 's': b.swap_down, 'a': b.swap_left, 'd': b.swap_right}
+    dirs = {'s': b.swap_up, 'w': b.swap_down, 'd': b.swap_left, 'a': b.swap_right}
     try:
         x, y = b.find_empty()
-        dirs[direction](x, y)
+        return dirs[direction](x, y)
     except KeyError:
-        pass
+        return False
 def validate(b):
     return b.board == [[1, 2, 3, 4],
                       [5, 6, 7, 8],
