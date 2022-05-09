@@ -65,14 +65,33 @@ def validate(b):
                       [5, 6, 7, 8],
                       [9, 10, 11, 12],
                       [13, 14, 15, '  ']]
-b = Board()
-b.shuffle()
-b.display()
-
-total_moves = 0
-while not validate(b):
-    _inp = input('Enter direction: ')
-    total_moves += move(b, _inp)
+def main():
+    b = Board()
+    b.shuffle()
     b.display()
-print('You win!')
-print(f'Total moves: {total_moves}')
+    total_moves = 0
+    while not validate(b):
+        _inp = input('Enter direction: ')
+        total_moves += move(b, _inp)
+        b.display()
+    print('You win!')
+    print(f'Total moves: {total_moves}')
+    
+def random_solve():
+    b = Board()
+    b.shuffle()
+    b.display()
+    total_moves = 0
+    import random
+    while not validate(b) and total_moves < 100000:
+        _inp = random.choice(['s', 'w', 'd', 'a'])
+        total_moves += move(b, _inp)
+        b.display()
+    if total_moves < 100000:
+        print('This puzzled solved by random moves!')
+        print(f'Total moves: {total_moves}')
+    else:
+        print('You actually cannot solve this by random moves!')
+
+main()
+# random_solve()
