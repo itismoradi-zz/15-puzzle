@@ -16,8 +16,11 @@ class Board:
         return self.board
     
     def swap_down(self, x, y):
-        if y < 3:
-            self.swap_up(x, y+1)
+        if x < 3:
+            self.board[x + 1][y], self.board[x][y] = self.board[x][y], self.board[x + 1][y]
+        return self.board
+        # if y < 3:
+            # self.swap_up(x, y+1)
         
     def swap_left(self, x, y):
         self.board[x][y], self.board[x][y - 1] = self.board[x][y - 1], self.board[x][y]
@@ -51,13 +54,20 @@ class Board:
                 return row, self.board[row].index('  ')
 
 def move(b, direction):
-    x, y = b.find_empty()
     dirs = {'w': b.swap_up, 's': b.swap_down, 'a': b.swap_left, 'd': b.swap_right}
-    dirs[direction](x, y)
+    try:
+        x, y = b.find_empty()
+        dirs[direction](x, y)
+    except TypeError:
+        pass
     
 b = Board()
 b.shuffle()
 b.display()
-move(b, 'w')
+move(b, 's')
 sleep(2)
 b.display()
+# while True:
+#     _inp = input('Enter direction: ')
+#     move(b, _inp)
+#     b.display()
