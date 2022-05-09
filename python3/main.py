@@ -19,17 +19,15 @@ class Board:
         if x < 3:
             self.board[x + 1][y], self.board[x][y] = self.board[x][y], self.board[x + 1][y]
         return self.board
-        # if y < 3:
-            # self.swap_up(x, y+1)
         
     def swap_left(self, x, y):
         self.board[x][y], self.board[x][y - 1] = self.board[x][y - 1], self.board[x][y]
         return self.board
     
     def swap_right(self, x, y):
-        if x < 3:
-            self.swap_left(x+1, y)
-        
+        if y < 3:
+            self.board[x][y+1], self.board[x][y] = self.board[x][y], self.board[x][y+1]
+            
     def shuffle(self):
         from random import randint, choice
         for i in range(100):
@@ -64,7 +62,7 @@ def move(b, direction):
 b = Board()
 b.shuffle()
 b.display()
-move(b, 's')
+move(b, 'd')
 sleep(2)
 b.display()
 # while True:
