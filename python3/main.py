@@ -13,22 +13,23 @@ class Board:
     def swap_up(self, x, y):
         if x != 0:
             self.board[x][y], self.board[x - 1][y] = self.board[x - 1][y], self.board[x][y]
-        return self.board
-    
+            return True
+        return False   
     def swap_down(self, x, y):
         if x < 3:
             self.board[x + 1][y], self.board[x][y] = self.board[x][y], self.board[x + 1][y]
-        return self.board
-        
+            return True
+        return False        
     def swap_left(self, x, y):
         if y != 0:
             self.board[x][y], self.board[x][y - 1] = self.board[x][y - 1], self.board[x][y]
-        return self.board
-    
+            return True
+        return False    
     def swap_right(self, x, y):
         if y < 3:
             self.board[x][y+1], self.board[x][y] = self.board[x][y], self.board[x][y+1]
-            
+            return True
+        return False            
     def shuffle(self):
         from random import randint, choice
         for i in range(100):
