@@ -57,13 +57,17 @@ def move(b, direction):
     try:
         x, y = b.find_empty()
         dirs[direction](x, y)
-    except TypeError:
+    except KeyError:
         pass
-    
+def validate(b):
+    return b.board == [[1, 2, 3, 4],
+                      [5, 6, 7, 8],
+                      [9, 10, 11, 12],
+                      [13, 14, 15, '  ']]
 b = Board()
 b.shuffle()
 b.display()
-while True:
+while not validate(b):
     _inp = input('Enter direction: ')
     move(b, _inp)
     b.display()
