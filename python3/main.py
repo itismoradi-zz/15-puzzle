@@ -69,8 +69,10 @@ b = Board()
 b.shuffle()
 b.display()
 
+total_moves = 0
 while not validate(b):
     _inp = input('Enter direction: ')
-    move(b, _inp)
+    total_moves += move(b, _inp)
     b.display()
-# print('You win!')
+print('You win!')
+print(f'Total moves: {total_moves}')
