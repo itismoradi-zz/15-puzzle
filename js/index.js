@@ -1,5 +1,7 @@
 let squares = [];
 let blank = 15;
+let numberOfMoves = 0;
+
 for (let index = 1; index <= 16; index++) {
     squares.push(index);
 }
@@ -9,12 +11,13 @@ function setBoard() {
     for (let i = 0; i < 16; i++) {
         document.getElementsByTagName("div")[i].innerHTML = squares[i];
         if (squares[i] == "") {
-            document.body.getElementsByTagName("div")[i].style.backgroundColor = "#74a059";
+            document.body.getElementsByTagName("div")[i].style.backgroundColor = "#d0d081";
         }
         else{
             document.body.getElementsByTagName("div")[i].style.backgroundColor = "#a5be7d";
         }
     }
+    document.getElementsByTagName("span")[0].innerHTML = numberOfMoves;
 }
 function checkBoard() {
     let flag = true;
@@ -28,8 +31,6 @@ function checkBoard() {
         alert("you won");
     }
 }
-
-setBoard();
 function shuffleBoard() {
     for (let i = 0; i < 100; i++) {
         let randomNum = Math.floor((Math.random() * 4) + 1);
@@ -48,14 +49,15 @@ function shuffleBoard() {
                 break;
         }
     }
+    numberOfMoves = 0;
     setBoard();
 }
-shuffleBoard();
 function Left() {
     if (blank % 4 != 3) {
         squares[blank] = squares[blank + 1];
         squares[blank + 1] = "";
         blank++;
+        numberOfMoves++;
     }
 }
 function Right() {
@@ -63,6 +65,7 @@ function Right() {
         squares[blank] = squares[blank - 1];
         squares[blank - 1] = "";
         blank--;
+        numberOfMoves++;
     }
 }
 function Up() {
@@ -70,6 +73,7 @@ function Up() {
         squares[blank] = squares[blank + 4];
         squares[blank + 4] = "";
         blank = blank + 4;
+        numberOfMoves++;
     }
 }
 function Down() {
@@ -77,6 +81,7 @@ function Down() {
         squares[blank] = squares[blank - 4];
         squares[blank - 4] = "";
         blank = blank - 4;
+        numberOfMoves++;
     }
 }
 document.addEventListener('keydown', function (event) {
@@ -95,3 +100,6 @@ document.addEventListener('keydown', function (event) {
     setBoard();
     checkBoard();
 });
+
+setBoard();
+shuffleBoard();

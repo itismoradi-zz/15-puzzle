@@ -1,5 +1,7 @@
 body{
-    background-color: #d8edb6;
+    background-color: #bad4a7;
+    color: #242526;
+    font-family: Monospace;
 }
 #board {
     position: relative;
@@ -7,18 +9,17 @@ body{
     grid-template-columns: 125px 125px 125px 125px;
     grid-template-rows: 125px 125px 125px 125px;
     justify-content: center;   
-    background-color: #f9f99e;
+    background-color: #d0d081;
+    background-color: #f2f2a0;
     width: 520px;
     height: 520px;
     margin: auto;
     border-radius: 10px;
     box-sizing: border-box;
     padding-top: 10px;
-    top: 20px;
+    margin-top: 20px;
 }
 #board div {
-    background-color: #a5be7d;
-    color: #151716;
     border-radius: 10px;
     font-size: 70px;
     width: 110px;
@@ -27,4 +28,39 @@ body{
     margin: auto;
     align-items: center;
     justify-content: center;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 520px;
+    margin: auto;
+    margin-top: 20px;
+}
+footer div p{
+    font-size: 30px;
+    height: 60px;
+    margin: 0px 10px;
+    width: 180px;
+    background-color: #a5be7d;
+    border: solid 2px #242526;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-top: 8px;
+    text-align: center;
+}
+footer button{
+    color: #242526;
+    border: solid 2px #242526;
+    background-color: #a5be7d;
+    border-radius: 5px;
+    font-family: Monospace;
+    font-size: 30px;
+    margin: 0px 10px;
+    width: 120px;
+    height: 60px;
+}
+footer button:hover{
+    cursor: pointer;
+    background-color: #cfe8a8;
 }
