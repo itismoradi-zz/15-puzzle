@@ -4,9 +4,8 @@
     grid-template-rows: 120px 120px 120px 120px;
     justify-content: center;   
 }
-.square {
+#board div {
     background-color: aquamarine;
-    padding: 10px;
     border: solid 1px rgb(2, 4, 49);
     font-size: 50px;
 }

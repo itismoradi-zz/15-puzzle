@@ -7,25 +7,44 @@ squares[15] = "";
 
 function setBoard() {
     for (let i = 0; i < 16; i++) {
-        document.getElementsByClassName("square")[i].innerHTML = squares[i];
+        document.getElementsByTagName("div")[i].innerHTML = squares[i];
     }
 }
 function checkBoard() {
     let flag = true;
     for (let i = 0; i < 15; i++) {
-        if (document.getElementsByClassName("square")[i].innerHTML != i + 1) {
+        if (document.getElementsByTagName("div")[i].innerHTML == i + 1);
+        else {
             flag = false;
         }
     }
-    if (flag == true) {
-
-        console.log("you won");
-    }
-    else {
-        console.log("game is not over");
+    if (flag) {
+        alert("you won");
     }
 }
+
 setBoard();
+function shuffleBoard() {
+    for (let i = 0; i < 100; i++) {
+        let randomNum = Math.floor((Math.random() * 4) + 1);
+        switch (randomNum) {
+            case 1:
+                Up();
+                break;
+            case 2:
+                Down();
+                break;
+            case 3:
+                Right();
+                break;
+            case 4:
+                Left();
+                break;
+        }
+    }
+    setBoard();
+}
+shuffleBoard();
 function Left() {
     if (blank % 4 != 3) {
         squares[blank] = squares[blank + 1];
