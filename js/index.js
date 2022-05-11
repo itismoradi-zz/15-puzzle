@@ -8,6 +8,12 @@ squares[15] = "";
 function setBoard() {
     for (let i = 0; i < 16; i++) {
         document.getElementsByTagName("div")[i].innerHTML = squares[i];
+        if (squares[i] == "") {
+            document.body.getElementsByTagName("div")[i].style.backgroundColor = "#74a059";
+        }
+        else{
+            document.body.getElementsByTagName("div")[i].style.backgroundColor = "#a5be7d";
+        }
     }
 }
 function checkBoard() {

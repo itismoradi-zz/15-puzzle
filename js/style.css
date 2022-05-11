@@ -1,11 +1,30 @@
+body{
+    background-color: #d8edb6;
+}
 #board {
+    position: relative;
     display: grid;
-    grid-template-columns: 120px 120px 120px 120px;
-    grid-template-rows: 120px 120px 120px 120px;
+    grid-template-columns: 125px 125px 125px 125px;
+    grid-template-rows: 125px 125px 125px 125px;
     justify-content: center;   
+    background-color: #f9f99e;
+    width: 520px;
+    height: 520px;
+    margin: auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    top: 20px;
 }
 #board div {
-    background-color: aquamarine;
-    border: solid 1px rgb(2, 4, 49);
-    font-size: 50px;
+    background-color: #a5be7d;
+    color: #151716;
+    border-radius: 10px;
+    font-size: 70px;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 }
