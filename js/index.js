@@ -1,34 +1,37 @@
-let squares = [];
+squares = new Array(16);
 let blank = 15;
 let numberOfMoves = 0;
-
-for (let index = 1; index <= 16; index++) {
-    squares.push(index);
+let win = false;
+let numberOfCorrectSquares = 0;
+function setArray() {
+    for (let index = 0; index < 16; index++) {
+        squares[index] = index + 1;
+    }
+    squares[15] = "";
 }
-squares[15] = "";
-
 function setBoard() {
     for (let i = 0; i < 16; i++) {
         document.getElementsByTagName("div")[i].innerHTML = squares[i];
         if (squares[i] == "") {
             document.body.getElementsByTagName("div")[i].style.backgroundColor = "#d0d081";
         }
-        else{
+        else {
             document.body.getElementsByTagName("div")[i].style.backgroundColor = "#a5be7d";
         }
     }
     document.getElementsByTagName("span")[0].innerHTML = numberOfMoves;
 }
 function checkBoard() {
-    let flag = true;
     for (let i = 0; i < 15; i++) {
-        if (document.getElementsByTagName("div")[i].innerHTML == i + 1);
-        else {
-            flag = false;
+        if (document.getElementsByTagName("div")[i].innerHTML == i + 1) {
+            numberOfCorrectSquares++;
         }
     }
-    if (flag) {
-        alert("you won");
+    if (numberOfCorrectSquares == 15) {
+        win = true;
+    }
+    else {
+        numberOfCorrectSquares = 0;
     }
 }
 function shuffleBoard() {
@@ -84,22 +87,34 @@ function Down() {
         numberOfMoves++;
     }
 }
-document.addEventListener('keydown', function (event) {
-    if (event.keyCode == 37) {
-        Left();
-    }
-    else if (event.keyCode == 38) {
-        Up();
-    }
-    else if (event.keyCode == 39) {
-        Right();
-    }
-    else if (event.keyCode == 40) {
-        Down();
-    }
-    setBoard();
+function reset() {
+    numberOfCorrectSquares = 0;
+    blank = 15;
+    setArray();
+    shuffleBoard();
+    numberOfMoves = 0;
+    win = false;
     checkBoard();
+}
+document.addEventListener('keydown', function (event) {
+    if (!win) {
+        if (event.keyCode == 37 || event.keyCode == 65) {
+            Left();
+        }
+        else if (event.keyCode == 38 || event.keyCode == 87) {
+            Up();
+        }
+        else if (event.keyCode == 39 || event.keyCode == 68) {
+            Right();
+        }
+        else if (event.keyCode == 40 || event.keyCode == 83) {
+            Down();
+        }
+        setBoard();
+        checkBoard();
+    }
 });
-
+setArray();
 setBoard();
 shuffleBoard();
+checkBoard();

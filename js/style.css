@@ -4,20 +4,22 @@ body{
     font-family: Monospace;
 }
 #board {
-    position: relative;
     display: grid;
     grid-template-columns: 125px 125px 125px 125px;
     grid-template-rows: 125px 125px 125px 125px;
     justify-content: center;   
-    background-color: #d0d081;
+    margin: auto;
     background-color: #f2f2a0;
     width: 520px;
     height: 520px;
-    margin: auto;
     border-radius: 10px;
     box-sizing: border-box;
+
     padding-top: 10px;
-    margin-top: 20px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #board div {
     border-radius: 10px;
@@ -34,14 +36,16 @@ footer{
     flex-direction: row;
     justify-content: space-between;
     width: 520px;
-    margin: auto;
-    margin-top: 20px;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 footer div p{
     font-size: 30px;
     height: 60px;
     margin: 0px 10px;
-    width: 180px;
+    width: 200px;
     background-color: #a5be7d;
     border: solid 2px #242526;
     border-radius: 5px;
