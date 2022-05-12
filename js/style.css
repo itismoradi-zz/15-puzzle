@@ -3,12 +3,41 @@ body{
     color: #242526;
     font-family: Monospace;
 }
+#overlay{
+    position: absolute;
+    display: block;
+    width: 520px;
+    height: 520px;
+    top: 10%;
+    background-color: rgba(0, 0, 0, 0.727);
+    border-radius: 10px;
+    z-index: 2;
+    cursor: pointer;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#overlay button {
+    font-family: Garamond;
+    display: flex;
+    color: rgb(235, 231, 231);
+    background-color: transparent;
+    font-size: 150px;
+    border: none;
+    top: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#overlay button:hover {
+    cursor: pointer;
+    color: rgb(213, 212, 212);
+}
 #board {
     display: grid;
     grid-template-columns: 125px 125px 125px 125px;
     grid-template-rows: 125px 125px 125px 125px;
     justify-content: center;   
-    margin: auto;
     background-color: #f2f2a0;
     width: 520px;
     height: 520px;
@@ -21,7 +50,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#board div {
+.square {
     border-radius: 10px;
     font-size: 70px;
     width: 110px;

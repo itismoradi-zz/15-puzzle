@@ -2,7 +2,13 @@ squares = new Array(16);
 let blank = 15;
 let numberOfMoves = 0;
 let win = false;
+let game = false;
 let numberOfCorrectSquares = 0;
+
+function remove_overlay() {
+    game = true;
+    document.getElementById("overlay").style.display = "none";
+}
 function setArray() {
     for (let index = 0; index < 16; index++) {
         squares[index] = index + 1;
@@ -96,8 +102,15 @@ function reset() {
     win = false;
     checkBoard();
 }
+function checkWin() {
+    if (win) {
+        document.getElementById("overlay").getElementsByTagName("button")[0].innerHTML = "YOU WON";
+        document.getElementById("overlay").style.display = "block";
+        game = false;
+    }
+}
 document.addEventListener('keydown', function (event) {
-    if (!win) {
+    if (!win && game) {
         if (event.keyCode == 37 || event.keyCode == 65) {
             Left();
         }
@@ -112,6 +125,7 @@ document.addEventListener('keydown', function (event) {
         }
         setBoard();
         checkBoard();
+        checkWin();
     }
 });
 setArray();
