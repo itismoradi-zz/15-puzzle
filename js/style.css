@@ -50,7 +50,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.square {
+#board div {
     border-radius: 10px;
     font-size: 70px;
     width: 110px;

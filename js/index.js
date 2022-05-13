@@ -1,12 +1,12 @@
 squares = new Array(16);
-let blank = 15;
+let blankSquare = 15;
 let numberOfMoves = 0;
-let win = false;
-let game = false;
+let hasWon = false;
+let pressedPlay = false;
 let numberOfCorrectSquares = 0;
 
 function remove_overlay() {
-    game = true;
+    pressedPlay = true;
     document.getElementById("overlay").style.display = "none";
 }
 function setArray() {
@@ -34,7 +34,7 @@ function checkBoard() {
         }
     }
     if (numberOfCorrectSquares == 15) {
-        win = true;
+        hasWon = true;
     }
     else {
         numberOfCorrectSquares = 0;
@@ -62,55 +62,55 @@ function shuffleBoard() {
     setBoard();
 }
 function Left() {
-    if (blank % 4 != 3) {
-        squares[blank] = squares[blank + 1];
-        squares[blank + 1] = "";
-        blank++;
+    if (blankSquare % 4 != 3) {
+        squares[blankSquare] = squares[blankSquare + 1];
+        squares[blankSquare + 1] = "";
+        blankSquare++;
         numberOfMoves++;
     }
 }
 function Right() {
-    if (blank % 4 != 0) {
-        squares[blank] = squares[blank - 1];
-        squares[blank - 1] = "";
-        blank--;
+    if (blankSquare % 4 != 0) {
+        squares[blankSquare] = squares[blankSquare - 1];
+        squares[blankSquare - 1] = "";
+        blankSquare--;
         numberOfMoves++;
     }
 }
 function Up() {
-    if (blank != 12 && blank != 13 && blank != 14 && blank != 15) {
-        squares[blank] = squares[blank + 4];
-        squares[blank + 4] = "";
-        blank = blank + 4;
+    if (blankSquare != 12 && blankSquare != 13 && blankSquare != 14 && blankSquare != 15) {
+        squares[blankSquare] = squares[blankSquare + 4];
+        squares[blankSquare + 4] = "";
+        blankSquare = blankSquare + 4;
         numberOfMoves++;
     }
 }
 function Down() {
-    if (blank != 0 && blank != 1 && blank != 2 && blank != 3) {
-        squares[blank] = squares[blank - 4];
-        squares[blank - 4] = "";
-        blank = blank - 4;
+    if (blankSquare != 0 && blankSquare != 1 && blankSquare != 2 && blankSquare != 3) {
+        squares[blankSquare] = squares[blankSquare - 4];
+        squares[blankSquare - 4] = "";
+        blankSquare = blankSquare - 4;
         numberOfMoves++;
     }
 }
 function reset() {
     numberOfCorrectSquares = 0;
-    blank = 15;
+    blankSquare = 15;
     setArray();
     shuffleBoard();
     numberOfMoves = 0;
-    win = false;
+    hasWon = false;
     checkBoard();
 }
-function checkWin() {
-    if (win) {
+function checkhasWon() {
+    if (hasWon) {
         document.getElementById("overlay").getElementsByTagName("button")[0].innerHTML = "YOU WON";
         document.getElementById("overlay").style.display = "block";
-        game = false;
+        pressedPlay = false;
     }
 }
 document.addEventListener('keydown', function (event) {
-    if (!win && game) {
+    if (!hasWon && pressedPlay) {
         if (event.keyCode == 37 || event.keyCode == 65) {
             Left();
         }
@@ -125,7 +125,7 @@ document.addEventListener('keydown', function (event) {
         }
         setBoard();
         checkBoard();
-        checkWin();
+        checkhasWon();
     }
 });
 setArray();
