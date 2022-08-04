@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    colorizeButtons();
     gameStatus = START;
     setupButtons();
 }
@@ -237,6 +236,8 @@ void MainWindow::setupButtons()
 
     emptyPosition.x = 3;
     emptyPosition.y = 3;
+
+    colorizeButtons();
 }
 
 
@@ -244,7 +245,7 @@ void MainWindow::on_btn_play_clicked()
 {
     if(gameStatus == START)
     {
-        ui->btn_play->setText("Restart");
+        ui->btn_play->setText("Reset");
         ui->btn_play->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
         gameStatus = PLAYING;
     }
@@ -252,7 +253,9 @@ void MainWindow::on_btn_play_clicked()
     {
         ui->btn_play->setText("Play");
         ui->btn_play->setStyleSheet("color: white; background-color: rgb(255, 179, 0);");
+        ui->lbl_status->setText("15 Puzzle");
         setupButtons();
+        gameStatus = START;
     }
 }
 
