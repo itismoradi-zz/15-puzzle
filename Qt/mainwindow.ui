@@ -417,7 +417,7 @@ background-color: rgb(100, 100, 100);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>500</y>
+      <y>495</y>
       <width>311</width>
       <height>81</height>
      </rect>
@@ -425,7 +425,7 @@ background-color: rgb(100, 100, 100);</string>
     <property name="font">
      <font>
       <family>Tahoma</family>
-      <pointsize>12</pointsize>
+      <pointsize>18</pointsize>
       <kerning>true</kerning>
      </font>
     </property>
@@ -433,10 +433,34 @@ background-color: rgb(100, 100, 100);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Welcome</string>
+     <string>15 Puzzle</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_play">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>40</y>
+      <width>211</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(255, 179, 0);</string>
+    </property>
+    <property name="text">
+     <string>Play</string>
     </property>
    </widget>
   </widget>
