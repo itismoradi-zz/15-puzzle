@@ -42,5 +42,6 @@ private:
     Board board;
     void logic(usInt, usInt);
     QPushButton * findButton(usInt, usInt);     //return ui button by position
+    void colorizeButtons();
 };
 #endif // MAINWINDOW_HPP

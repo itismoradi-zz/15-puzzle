@@ -127,6 +127,7 @@ void MainWindow::logic(usInt x, usInt y)
             findButton(empty.x, empty.y)->setText(QString::number(empty.value));
             findButton(x, y)->setText("");
             ui->lbl_status->setText("😎👍");
+            colorizeButtons();
             return;
         }
     }
@@ -168,5 +169,39 @@ QPushButton *MainWindow::findButton(usInt x, usInt y)
     {
         throw invalid_argument("Invalid position is entered!");
     }
+}
+
+void MainWindow::colorizeButtons()
+{
+    if(ui->btn0_0->text() == "1")  ui->btn0_0->setStyleSheet("color: white; background-color: rgb(197, 201, 18);");
+    else ui->btn0_0->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn1_0->text() == "2")  ui->btn1_0->setStyleSheet("color: white; background-color: rgb(255, 129, 7);");
+    else ui->btn1_0->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn2_0->text() == "3")  ui->btn2_0->setStyleSheet("color: white; background-color: rgb(146, 34, 156);");
+    else ui->btn2_0->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn3_0->text() == "4")  ui->btn3_0->setStyleSheet("color: white; background-color: rgb(31, 86, 255);");
+    else ui->btn3_0->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn0_1->text() == "5")  ui->btn0_1->setStyleSheet("color: white; background-color: rgb(7, 209, 205);");
+    else ui->btn0_1->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn1_1->text() == "6")  ui->btn1_1->setStyleSheet("color: white; background-color: rgb(73, 166, 45);");
+    else ui->btn1_1->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn2_1->text() == "7")  ui->btn2_1->setStyleSheet("color: white; background-color: rgb(21, 100, 192);");
+    else ui->btn2_1->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn3_1->text() == "8")  ui->btn3_1->setStyleSheet("color: white; background-color: rgb(236, 64, 122);");
+    else ui->btn3_1->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn0_2->text() == "9")  ui->btn0_2->setStyleSheet("color: white; background-color: rgb(229, 57, 53);");
+    else ui->btn0_2->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn1_2->text() == "10") ui->btn1_2->setStyleSheet("color: white; background-color: rgb(144, 82, 200);");
+    else ui->btn1_2->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn2_2->text() == "11") ui->btn2_2->setStyleSheet("color: white; background-color: rgb(237, 189, 1);");
+    else ui->btn2_2->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn3_2->text() == "12") ui->btn3_2->setStyleSheet("color: white; background-color: rgb(6, 168, 85);");
+    else ui->btn3_2->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn0_3->text() == "13") ui->btn0_3->setStyleSheet("color: white; background-color: rgb(255, 187, 24);");
+    else ui->btn0_3->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn1_3->text() == "14") ui->btn1_3->setStyleSheet("color: white; background-color: rgb(156, 29, 84);");
+    else ui->btn1_3->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+    if(ui->btn2_3->text() == "15") ui->btn2_3->setStyleSheet("color: white; background-color: rgb(0, 35, 245);");
+    else ui->btn2_3->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
 }
 
