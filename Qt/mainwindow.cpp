@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 #include <exception>
+#include <random>
 
 using namespace std;
 
@@ -229,7 +230,6 @@ void MainWindow::setupButtons()
 
     emptyPosition.x = 3;
     emptyPosition.y = 3;
-
     colorizeButtons();
 }
 
@@ -244,13 +244,48 @@ void MainWindow::swapButtons(usInt x, usInt y)
     emptyPosition.y = y;
 }
 
+void MainWindow::disarrange()
+{
+    random_device rdDevice;
+    mt19937 eng(rdDevice());
+    uniform_int_distribution<usInt> dist4(0, 3);
+
+    for(usInt i = 0; i < 500; i++)
+    {
+        usInt randomNumber = dist4(eng);
+
+        if(randomNumber == 0)   //move empty to up
+        {
+            if(emptyPosition.y != 0) swapButtons(emptyPosition.x, emptyPosition.y - 1);
+
+        }
+        else if(randomNumber == 1)   //move empty to down
+        {
+            if(emptyPosition.y != 3) swapButtons(emptyPosition.x, emptyPosition.y + 1);
+
+        }
+        else if(randomNumber == 2)   //move empty to left
+        {
+            if(emptyPosition.x != 0) swapButtons(emptyPosition.x  - 1, emptyPosition.y);
+
+        }
+        else if(randomNumber == 3)   //move empty to right
+        {
+            if(emptyPosition.x != 3) swapButtons(emptyPosition.x + 1, emptyPosition.y);
+
+        }
+    }
+}
+
 
 void MainWindow::on_btn_play_clicked()
 {
     if(gameStatus == START)
     {
+        disarrange();
         ui->btn_play->setText("Reset");
         ui->btn_play->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+        ui->lbl_status->setText("😄 start now");
         gameStatus = PLAYING;
     }
     else if(gameStatus == PLAYING)
