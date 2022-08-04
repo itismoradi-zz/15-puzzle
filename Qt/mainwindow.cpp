@@ -132,6 +132,7 @@ void MainWindow::logic(usInt x, usInt y)
         {
             swapButtons(x, y);
             ui->lbl_status->setText("😎👍");
+            checkPuzzle();
             return;
         }
     }
@@ -244,6 +245,32 @@ void MainWindow::swapButtons(usInt x, usInt y)
     emptyPosition.y = y;
 }
 
+void MainWindow::checkPuzzle()
+{
+    QPushButton * btn;
+    usInt btnNumber = 1;
+
+    for(usInt i = 0; i < 4; i++)
+    {
+        for(usInt j = 0; j < 4; j++)
+        {
+            btn = findButton(j, i);
+            cout << btn->text().toStdString() << "\t" << btnNumber << endl;
+            if(i == 3 && j == 3) break;
+            if (btn->text() != QString::number(btnNumber))
+            {
+                return;
+            }
+
+            btnNumber++;
+        }
+    }
+
+    gameStatus = WIN;
+    ui->lbl_status->setText("😍 you win...");
+    ui->btn3_3->setText("🏆");
+}
+
 void MainWindow::disarrange()
 {
     random_device rdDevice;
@@ -288,7 +315,7 @@ void MainWindow::on_btn_play_clicked()
         ui->lbl_status->setText("😄 start now");
         gameStatus = PLAYING;
     }
-    else if(gameStatus == PLAYING)
+    else if(gameStatus == PLAYING || gameStatus == WIN)
     {
         ui->btn_play->setText("Play");
         ui->btn_play->setStyleSheet("color: white; background-color: rgb(255, 179, 0);");

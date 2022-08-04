@@ -48,6 +48,7 @@ private:
     void colorizeButtons();
     void setupButtons();
     void swapButtons(usInt, usInt);
+    void checkPuzzle();
     void disarrange();
     enum GameStatus {START, PLAYING, WIN} gameStatus;
     Position emptyPosition;
