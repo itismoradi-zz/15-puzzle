@@ -47,6 +47,7 @@ private:
     QPushButton * findButton(usInt, usInt);     //return ui button by position
     void colorizeButtons();
     void setupButtons();
+    void swapButtons(usInt, usInt);
     enum GameStatus {START, PLAYING, WIN} gameStatus;
     Position emptyPosition;
 };

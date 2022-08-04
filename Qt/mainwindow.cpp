@@ -124,20 +124,13 @@ void MainWindow::logic(usInt x, usInt y)
         return;
     }
 
-    QPushButton * target = findButton(x, y);
-    QPushButton * empty  = findButton(emptyPosition.x, emptyPosition.y);
-
     if(emptyPosition.x == x || emptyPosition.y == y)
     {
         if(emptyPosition.y == y - 1 || emptyPosition.y == y + 1 ||
            emptyPosition.x == x - 1 || emptyPosition.x == x + 1)
         {
-            empty->setText(target->text());
-            target->setText("");
+            swapButtons(x, y);
             ui->lbl_status->setText("😎👍");
-            colorizeButtons();
-            emptyPosition.x = x;
-            emptyPosition.y = y;
             return;
         }
     }
@@ -238,6 +231,17 @@ void MainWindow::setupButtons()
     emptyPosition.y = 3;
 
     colorizeButtons();
+}
+
+void MainWindow::swapButtons(usInt x, usInt y)
+{
+    QPushButton * target = findButton(x, y);
+    QPushButton * empty  = findButton(emptyPosition.x, emptyPosition.y);
+    empty->setText(target->text());
+    target->setText("");
+    colorizeButtons();
+    emptyPosition.x = x;
+    emptyPosition.y = y;
 }
 
 
