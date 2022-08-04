@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+typedef unsigned short int usInt;
+#define EMPTY 16
+
+struct Position {usInt x, y;};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
-#include "board.hpp"
 
 class MainWindow : public QMainWindow
 {
@@ -37,11 +39,15 @@ private slots:
     void on_btn2_3_clicked();
     void on_btn3_3_clicked();
 
+    void on_btn_play_clicked();
+
 private:
     Ui::MainWindow *ui;
-    Board board;
     void logic(usInt, usInt);
     QPushButton * findButton(usInt, usInt);     //return ui button by position
     void colorizeButtons();
+    void setupButtons();
+    enum GameStatus {START, PLAYING, WIN} gameStatus;
+    Position emptyPosition;
 };
 #endif // MAINWINDOW_HPP

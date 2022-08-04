@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    colorizeButtons();
+    gameStatus = START;
+    setupButtons();
 }
 
 MainWindow::~MainWindow()
@@ -115,19 +118,27 @@ void MainWindow::on_btn3_3_clicked()
 
 void MainWindow::logic(usInt x, usInt y)
 {
-    Cell & empty = ~board;
-    Cell & target = board(x, y);
-
-    if(empty.x == target.x || empty.y == target.y)
+    if(gameStatus != PLAYING) return;
+    if(emptyPosition.x == x && emptyPosition.y == y)
     {
-        if(empty.y == target.y - 1 || empty.y == target.y + 1 ||
-           empty.x == target.x - 1 || empty.x == target.x + 1)
+        ui->lbl_status->setText("🙃 empty!");
+        return;
+    }
+
+    QPushButton * target = findButton(x, y);
+    QPushButton * empty  = findButton(emptyPosition.x, emptyPosition.y);
+
+    if(emptyPosition.x == x || emptyPosition.y == y)
+    {
+        if(emptyPosition.y == y - 1 || emptyPosition.y == y + 1 ||
+           emptyPosition.x == x - 1 || emptyPosition.x == x + 1)
         {
-            board.swapCells(empty.x, empty.y, target.x, target.y);
-            findButton(empty.x, empty.y)->setText(QString::number(empty.value));
-            findButton(x, y)->setText("");
+            empty->setText(target->text());
+            target->setText("");
             ui->lbl_status->setText("😎👍");
             colorizeButtons();
+            emptyPosition.x = x;
+            emptyPosition.y = y;
             return;
         }
     }
@@ -203,5 +214,45 @@ void MainWindow::colorizeButtons()
     else ui->btn1_3->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
     if(ui->btn2_3->text() == "15") ui->btn2_3->setStyleSheet("color: white; background-color: rgb(0, 35, 245);");
     else ui->btn2_3->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+}
+
+void MainWindow::setupButtons()
+{
+    ui->btn0_0->setText("1");
+    ui->btn1_0->setText("2");
+    ui->btn2_0->setText("3");
+    ui->btn3_0->setText("4");
+    ui->btn0_1->setText("5");
+    ui->btn1_1->setText("6");
+    ui->btn2_1->setText("7");
+    ui->btn3_1->setText("8");
+    ui->btn0_2->setText("9");
+    ui->btn1_2->setText("10");
+    ui->btn2_2->setText("11");
+    ui->btn3_2->setText("12");
+    ui->btn0_3->setText("13");
+    ui->btn1_3->setText("14");
+    ui->btn2_3->setText("15");
+    ui->btn3_3->setText("");
+
+    emptyPosition.x = 3;
+    emptyPosition.y = 3;
+}
+
+
+void MainWindow::on_btn_play_clicked()
+{
+    if(gameStatus == START)
+    {
+        ui->btn_play->setText("Restart");
+        ui->btn_play->setStyleSheet("color: white; background-color: rgb(100, 100, 100);");
+        gameStatus = PLAYING;
+    }
+    else if(gameStatus == PLAYING)
+    {
+        ui->btn_play->setText("Play");
+        ui->btn_play->setStyleSheet("color: white; background-color: rgb(255, 179, 0);");
+        setupButtons();
+    }
 }
 
