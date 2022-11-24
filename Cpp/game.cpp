@@ -7,6 +7,7 @@ Game::Game()
 {
     isFinished = false;
     isValid = false;
+    initBoard();
 
     cout << "===== 15 puzzle =====" << endl;
     cout << "|  1 |  2 |  3 |  4 |" << endl;
@@ -20,6 +21,22 @@ Game::Game()
 
     cout << "(O) " << "Enter a character to play : ";
     cin >> command; 
+}
+
+void Game::initBoard()
+{
+    int number = 1;
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        for (size_t j = 0; j < 3; j++)
+        {
+            board.at(i).at(j) = number;
+            number++;
+        }
+    }
+    
+    board.at(3).at(3) = EMPTY;
 }
 
 int Game::play()
