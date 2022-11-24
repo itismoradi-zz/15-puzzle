@@ -98,6 +98,40 @@ void Game::input()
 
 void Game::logic()
 {
+    Position empty = ~*this;
+
+    switch (command)
+    {
+        case 'w':
+        {
+            if(empty.x != 3)
+                (*this)(empty.x, empty.y, empty.x + 1, empty.y);
+
+            break;
+        }
+        case 's':
+        {
+            if(empty.x != 0)
+                (*this)(empty.x, empty.y, empty.x - 1, empty.y);
+
+            break;
+        }
+        case 'a':
+        {
+            if(empty.y != 0)
+                (*this)(empty.x, empty.y, empty.x, empty.y - 1);
+
+            break;
+        }
+        case 'd':
+        {
+            if(empty.y != 3)
+                (*this)(empty.x, empty.y, empty.x, empty.y + 1);
+
+            break;
+        }  
+    }
+   
     isValid = false;
 }
 
@@ -134,3 +168,8 @@ Game::Position Game::operator ~()
         }
     }
 }      
+
+void Game::operator()(int x1, int y1, int x2, int y2)
+{
+    swap(board[x1][y1], board[x2][y2]);
+}

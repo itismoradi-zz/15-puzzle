@@ -21,7 +21,8 @@ class Game
         void input();
         void logic();
         bool validate();
-        Position operator ~();      
+        Position operator ~();
+        void operator()(int, int, int, int);   
 };
 
 #endif
