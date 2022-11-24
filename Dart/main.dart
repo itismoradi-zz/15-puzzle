@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:math';
 //import 'package:win32/win32.dart';
 
-const bool testMode = true;
+const bool testMode = false;
 
 class Board{
     List table = [
