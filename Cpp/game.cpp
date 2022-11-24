@@ -122,7 +122,7 @@ Game::Position Game::operator ~()
     {
         for (size_t j = 0; j < 4; j++)      // Column traversal
         {
-            if(board.at(i).at(j) = EMPTY)
+            if(board.at(i).at(j) == EMPTY)
             {
                 empty.x = i;
                 empty.y = j;
