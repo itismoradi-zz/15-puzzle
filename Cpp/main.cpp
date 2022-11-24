@@ -1,10 +1,11 @@
 //15-Puzzle
 
+#include "game.hpp"
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    
-    return 0;
+    Game game;
+    return game.play();
 }
