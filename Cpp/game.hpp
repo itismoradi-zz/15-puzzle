@@ -14,12 +14,14 @@ class Game
         char command;
         bool isValid;
         std::array<std::array<int, 4>, 4> board;
+        struct Position{int x; int y;};
 
         void initBoard();
         void print();
         void input();
         void logic();
         bool validate();
+        Position operator ~();      
 };
 
 #endif

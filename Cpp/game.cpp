@@ -95,7 +95,6 @@ void Game::input()
 
 void Game::logic()
 {
-    cout << "logic is working..." << endl;
     isValid = false;
 }
 
@@ -111,6 +110,24 @@ bool Game::validate()
     }
     else
     {
-        return false; 
+        return false;
     }
 }
+
+Game::Position Game::operator ~()
+{
+    Position empty;
+
+    for (size_t i = 0; i < 4; i++)      // Row traversal 
+    {
+        for (size_t j = 0; j < 4; j++)      // Column traversal
+        {
+            if(board.at(i).at(j) = EMPTY)
+            {
+                empty.x = i;
+                empty.y = j;
+                return empty;
+            }
+        }
+    }
+}      
