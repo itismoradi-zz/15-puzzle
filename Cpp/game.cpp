@@ -9,17 +9,10 @@ Game::Game()
     isValid = false;
     initBoard();
 
-    cout << "===== 15 puzzle =====" << endl;
-    cout << "|  1 |  2 |  3 |  4 |" << endl;
-    cout << "---------------------" << endl;
-    cout << "|  5 |  6 |  7 |  8 |" << endl;
-    cout << "---------------------" << endl;
-    cout << "|  9 | 10 | 11 | 12 |" << endl;
-    cout << "---------------------" << endl;
-    cout << "| 13 | 14 | 15 |    |" << endl;
-    cout << "---------------------\n" << endl;
+    print();
 
-    cout << "(O) " << "Enter a character to play : ";
+    cout << "Game keys : W, S, A, D" << endl;
+    cout << ">> " << "Enter a character to play : ";
     cin >> command; 
 }
 
@@ -27,9 +20,9 @@ void Game::initBoard()
 {
     int number = 1;
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 4; i++)      // Row traversal 
     {
-        for (size_t j = 0; j < 3; j++)
+        for (size_t j = 0; j < 4; j++)      // Column traversal
         {
             board.at(i).at(j) = number;
             number++;
@@ -54,11 +47,32 @@ int Game::play()
 void Game::print()
 {
     system("cls || clear");
-    cout << "---------------------" << endl;
 
+    cout << " ===== 15 puzzle =====" << endl;
 
+    for (size_t i = 0; i < 4; i++)      // Row traversal 
+    {        
+        for (size_t j = 0; j < 4; j++)      // Column traversal
+        {
+            cout << " | ";
+            int number = board.at(i).at(j);
 
-    cout << "---------------------" << endl;
+            if(number == 0)
+            {
+                cout << "  ";
+                break;
+            }
+            else if(number < 10)
+            {
+                cout << " ";
+            } 
+            
+            cout << number;
+        }
+
+        cout << " |" << endl;
+        cout << " ---------------------" << endl;
+    }
 }
 
 void Game::input()
@@ -73,7 +87,7 @@ void Game::input()
             return;
         }
 
-        cout << "(O) " << "Wrong command!" << endl; 
+        cout << ">> " << "Wrong command!" << endl; 
     }  
 }
 
