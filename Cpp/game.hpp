@@ -24,6 +24,7 @@ class Game
         Position operator ~();
         void operator()(int, int, int, int);
         bool isWin();
+        void move(char, Position);
 };
 
 #endif

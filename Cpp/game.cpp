@@ -100,37 +100,7 @@ void Game::logic()
 {
     Position empty = ~*this;
 
-    switch (command)
-    {
-        case 'w':
-        {
-            if(empty.x != 3)
-                (*this)(empty.x, empty.y, empty.x + 1, empty.y);
-
-            break;
-        }
-        case 's':
-        {
-            if(empty.x != 0)
-                (*this)(empty.x, empty.y, empty.x - 1, empty.y);
-
-            break;
-        }
-        case 'd':
-        {
-            if(empty.y != 0)
-                (*this)(empty.x, empty.y, empty.x, empty.y - 1);
-
-            break;
-        }
-        case 'a':
-        {
-            if(empty.y != 3)
-                (*this)(empty.x, empty.y, empty.x, empty.y + 1);
-
-            break;
-        }  
-    }
+   move(command, empty);
    
     isValid = false;
     isFinished = isWin();
@@ -199,4 +169,39 @@ bool Game::isWin()
     }
 
     return true;
+}
+
+void Game::move(char command, Position empty)
+{
+    switch (command)
+    {
+        case 'w':
+        {
+            if(empty.x != 3)
+                (*this)(empty.x, empty.y, empty.x + 1, empty.y);
+
+            break;
+        }
+        case 's':
+        {
+            if(empty.x != 0)
+                (*this)(empty.x, empty.y, empty.x - 1, empty.y);
+
+            break;
+        }
+        case 'd':
+        {
+            if(empty.y != 0)
+                (*this)(empty.x, empty.y, empty.x, empty.y - 1);
+
+            break;
+        }
+        case 'a':
+        {
+            if(empty.y != 3)
+                (*this)(empty.x, empty.y, empty.x, empty.y + 1);
+
+            break;
+        }  
+    }
 }
