@@ -8,6 +8,7 @@ class Game
         int play();
     private:
         bool isFinished;
+        char command;
 
         void print();
         void input();
