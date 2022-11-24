@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <cctype>
 using namespace std;
 
 Game::Game()
@@ -80,6 +81,7 @@ void Game::input()
     while(!isValid)
     {
         cin >> command;
+        command = tolower(command);
 
         if(validate()) 
         {
@@ -99,12 +101,11 @@ void Game::logic()
 
 bool Game::validate()
 {
-    if(command == 'q' || command == 'Q' || command == 'e' || command == 'E' || cin.eof())
+    if(command == 'q' || command == 'e' || cin.eof())
     {
         isFinished = true;
     }
-    else if (command == 'w' || command == 'W' || command == 's' || command == 'S' ||
-             command == 'a' || command == 'A' || command == 'd' || command == 'D')
+    else if (command == 'w' || command == 's' || command == 'a' || command == 'd')
     {
         return true;
     }
