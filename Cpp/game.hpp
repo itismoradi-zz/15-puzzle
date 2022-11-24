@@ -22,7 +22,7 @@ class Game
         void logic();
         bool validate();
         Position operator ~();
-        void operator()(int, int, int, int);   
+        void operator()(int, int, int, int);
 };
 
 #endif

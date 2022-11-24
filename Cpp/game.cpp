@@ -116,14 +116,14 @@ void Game::logic()
 
             break;
         }
-        case 'a':
+        case 'd':
         {
             if(empty.y != 0)
                 (*this)(empty.x, empty.y, empty.x, empty.y - 1);
 
             break;
         }
-        case 'd':
+        case 'a':
         {
             if(empty.y != 3)
                 (*this)(empty.x, empty.y, empty.x, empty.y + 1);
@@ -139,16 +139,16 @@ bool Game::validate()
 {
     if(command == 'q' || command == 'e' || cin.eof())
     {
+        isValid = true;
         isFinished = true;
+        return true;
     }
     else if (command == 'w' || command == 's' || command == 'a' || command == 'd')
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
 
 Game::Position Game::operator ~()
@@ -167,6 +167,8 @@ Game::Position Game::operator ~()
             }
         }
     }
+
+    return empty;
 }      
 
 void Game::operator()(int x1, int y1, int x2, int y2)
