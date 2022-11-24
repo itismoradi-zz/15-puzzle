@@ -133,6 +133,7 @@ void Game::logic()
     }
    
     isValid = false;
+    isFinished = isWin();
 }
 
 bool Game::validate()
@@ -174,4 +175,28 @@ Game::Position Game::operator ~()
 void Game::operator()(int x1, int y1, int x2, int y2)
 {
     swap(board[x1][y1], board[x2][y2]);
+}
+
+bool Game::isWin()
+{
+    int number = 1;
+
+    for (size_t i = 0; i < 4; i++)      // Row traversal 
+    {
+        for (size_t j = 0; j < 4; j++)      // Column traversal
+        {
+            if(i == 3 && j == 3)
+            {
+                number = EMPTY;
+            }
+            if(board.at(i).at(j) != number)
+            {
+                return false;
+            }
+
+            number++;
+        }
+    }
+
+    return true;
 }

@@ -23,6 +23,7 @@ class Game
         bool validate();
         Position operator ~();
         void operator()(int, int, int, int);
+        bool isWin();
 };
 
 #endif
