@@ -58,17 +58,20 @@ void Game::print()
             cout << " | ";
             int number = board.at(i).at(j);
 
-            if(number == 0)
+            if(number == EMPTY)
             {
                 cout << "  ";
-                break;
             }
-            else if(number < 10)
+            else 
             {
-                cout << " ";
-            } 
-            
-            cout << number;
+                if(number < 10)
+                {
+                    cout << " ";
+                } 
+                
+                cout << number;
+            }
+
         }
 
         cout << " |" << endl;
