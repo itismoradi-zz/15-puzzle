@@ -62,6 +62,11 @@ int Game::play()
         logic();
     }
 
+    if(isWin())
+    {
+        print();
+        cout << "*** you Win ***" << endl;
+    }
     return 0;
 }
 
