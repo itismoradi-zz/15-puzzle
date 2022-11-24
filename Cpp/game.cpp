@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cctype>
+#include <random>
 using namespace std;
 
 Game::Game()
@@ -31,6 +32,25 @@ void Game::initBoard()
     }
     
     board.at(3).at(3) = EMPTY;
+
+    // Make board unordered randomly
+    for (size_t i = 0; i < 500; i++)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        
+        char ch;
+        int randNumber = gen() % 4;
+        
+        if     (randNumber == 0) ch = 'w';
+        else if(randNumber == 1) ch = 's';
+        else if(randNumber == 2) ch = 'a';
+        else if(randNumber == 3) ch = 'd';
+
+        Position empty = ~*this;
+        move(ch, empty);
+    }
+    
 }
 
 int Game::play()
@@ -98,9 +118,11 @@ void Game::input()
 
 void Game::logic()
 {
+    if(command == 'q' || command == 'e' || cin.eof()) return;
+
     Position empty = ~*this;
 
-   move(command, empty);
+    move(command, empty);
    
     isValid = false;
     isFinished = isWin();
