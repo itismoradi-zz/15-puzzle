@@ -9,10 +9,12 @@ class Game
     private:
         bool isFinished;
         char command;
+        bool isValid;
 
         void print();
         void input();
         void logic();
+        bool validate();
 };
 
 #endif

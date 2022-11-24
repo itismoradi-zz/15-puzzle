@@ -6,6 +6,7 @@ using namespace std;
 Game::Game()
 {
     isFinished = false;
+    isValid = false;
 
     cout << "===== 15 puzzle =====" << endl;
     cout << "|  1 |  2 |  3 |  4 |" << endl;
@@ -16,10 +17,9 @@ Game::Game()
     cout << "---------------------" << endl;
     cout << "| 13 | 14 | 15 |    |" << endl;
     cout << "---------------------\n" << endl;
-    cout << "(O) " << "Enter a character to play : ";
 
+    cout << "(O) " << "Enter a character to play : ";
     cin >> command; 
-    system("cls || clear");
 }
 
 int Game::play()
@@ -36,6 +36,7 @@ int Game::play()
 
 void Game::print()
 {
+    system("cls || clear");
     cout << "---------------------" << endl;
 
 
@@ -45,12 +46,39 @@ void Game::print()
 
 void Game::input()
 {
-    cin >> command;
+    while(!isValid)
+    {
+        cin >> command;
 
-    system("cls || clear");
+        if(validate()) 
+        {
+            isValid = true;
+            return;
+        }
+
+        cout << "(O) " << "Wrong command!" << endl; 
+    }  
 }
 
 void Game::logic()
 {
+    cout << "logic is working..." << endl;
+    isValid = false;
+}
 
+bool Game::validate()
+{
+    if(command == 'q' || command == 'Q' || command == 'e' || command == 'E' || cin.eof())
+    {
+        isFinished = true;
+    }
+    else if (command == 'w' || command == 'W' || command == 's' || command == 'S' ||
+             command == 'a' || command == 'A' || command == 'd' || command == 'D')
+    {
+        return true;
+    }
+    else
+    {
+        return false; 
+    }
 }
