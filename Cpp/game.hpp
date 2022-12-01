@@ -12,7 +12,6 @@ class Game
     private:
         bool isFinished;
         char command;
-        bool isValid;
         std::array<std::array<int, 4>, 4> board;
         struct Position{int x; int y;};
 
@@ -21,7 +20,6 @@ class Game
         void print();
         void input();
         void logic();
-        bool validate();
         Position operator ~();
         void operator()(int, int, int, int);
         bool isWin();

@@ -8,7 +8,6 @@ using namespace std;
 Game::Game()
 {
     isFinished = false;
-    isValid = false;
     init();
     unorder();
 
@@ -108,47 +107,17 @@ void Game::print()
 
 void Game::input()
 {
-    while(!isValid)
-    {
-        cin >> command;
-        command = tolower(command);
-
-        if(validate()) 
-        {
-            isValid = true;
-            return;
-        }
-
-        cout << ">> " << "Wrong command!" << endl; 
-    }  
+    cin >> command;
+    command = tolower(command);
 }
 
 void Game::logic()
 {
-    if(command == 'q' || command == 'e' || cin.eof()) return;
-
     Position empty = ~*this;
 
     move(command, empty);
    
-    isValid = false;
     isFinished = isWin();
-}
-
-bool Game::validate()
-{
-    if(command == 'q' || command == 'e' || cin.eof())
-    {
-        isValid = true;
-        isFinished = true;
-        return true;
-    }
-    else if (command == 'w' || command == 's' || command == 'a' || command == 'd')
-    {
-        return true;
-    }
-
-    return false;
 }
 
 Game::Position Game::operator ~()
