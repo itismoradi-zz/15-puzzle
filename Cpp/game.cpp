@@ -50,18 +50,15 @@ void Game::unorder()
 
 int Game::play()
 {
-    while(!isFinished)
+    while (!isWin())
     {
         print();
         input();
         logic();
     }
-
-    if(isWin())
-    {
-        print();
-        cout << "*** you Win ***" << endl;
-    }
+    
+    print();
+    cout << "\n You Win!\n" << endl;
     return 0;
 }
 
