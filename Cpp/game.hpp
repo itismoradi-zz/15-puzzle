@@ -20,7 +20,7 @@ class Game
         void print();
         void input();
         void logic();
-        Position operator ~();
+        Position findEmpty();
         bool isWin();
 };
 

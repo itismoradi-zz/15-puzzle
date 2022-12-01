@@ -104,7 +104,7 @@ void Game::input()
 
 void Game::logic()
 {
-    Position empty = ~*this;
+    Position empty = findEmpty();
 
     if(command == 's' && empty.x != 0)
     {
@@ -128,7 +128,7 @@ void Game::logic()
     }
 }
 
-Game::Position Game::operator ~()
+Game::Position Game::findEmpty()
 {
     Position empty;
 
