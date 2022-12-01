@@ -21,7 +21,6 @@ class Game
         void input();
         void logic();
         Position operator ~();
-        void operator()(int, int, int, int);
         bool isWin();
 };
 
