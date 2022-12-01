@@ -106,9 +106,26 @@ void Game::logic()
 {
     Position empty = ~*this;
 
-    move(command, empty);
-   
-    isFinished = isWin();
+    if(command == 's' && empty.x != 0)
+    {
+        swap(board[empty.x][empty.y], board[empty.x - 1][empty.y]);
+    }
+    else if(command == 'w' && empty.x != 3)
+    {
+        swap(board[empty.x][empty.y], board[empty.x + 1][empty.y]);
+    }
+    else if(command == 'a' && empty.y != 3)
+    {
+        swap(board[empty.x][empty.y], board[empty.x][empty.y + 1]);
+    }
+    else if(command == 'd' && empty.y != 0)
+    {
+        swap(board[empty.x][empty.y], board[empty.x][empty.y - 1]);
+    }
+    else if(command == 'q' || command == 'e')
+    {
+        exit(0);
+    }
 }
 
 Game::Position Game::operator ~()
@@ -158,39 +175,4 @@ bool Game::isWin()
     }
 
     return true;
-}
-
-void Game::move(char command, Position empty)
-{
-    switch (command)
-    {
-        case 'w':
-        {
-            if(empty.x != 3)
-                (*this)(empty.x, empty.y, empty.x + 1, empty.y);
-
-            break;
-        }
-        case 's':
-        {
-            if(empty.x != 0)
-                (*this)(empty.x, empty.y, empty.x - 1, empty.y);
-
-            break;
-        }
-        case 'd':
-        {
-            if(empty.y != 0)
-                (*this)(empty.x, empty.y, empty.x, empty.y - 1);
-
-            break;
-        }
-        case 'a':
-        {
-            if(empty.y != 3)
-                (*this)(empty.x, empty.y, empty.x, empty.y + 1);
-
-            break;
-        }  
-    }
 }
