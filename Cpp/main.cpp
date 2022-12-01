@@ -1,4 +1,4 @@
-//15-Puzzle
+//15 Puzzle
 
 #include "game.hpp"
 
