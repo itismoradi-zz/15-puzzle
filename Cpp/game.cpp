@@ -9,7 +9,8 @@ Game::Game()
 {
     isFinished = false;
     isValid = false;
-    initBoard();
+    init();
+    unorder();
 
     print();
 
@@ -18,37 +19,38 @@ Game::Game()
     cin >> command; 
 }
 
-void Game::initBoard()
+void Game::init()
 {
     int number = 1;
 
-    for (size_t i = 0; i < 4; i++)      // Row traversal 
+    for (size_t i = 0; i < 4; i++)
     {
-        for (size_t j = 0; j < 4; j++)      // Column traversal
+        for (size_t j = 0; j < 4; j++)
         {
-            board.at(i).at(j) = number;
+            board[i][j] = number;
+            //board.at(i).at(j) = number;
             number++;
         }
     }
-    
-    board.at(3).at(3) = EMPTY;
 
-    // Make board unordered randomly
-    for (size_t i = 0; i < 500; i++)
+    board[3][3] = EMPTY;
+}
+
+void Game::unorder()
+{
+    for (size_t i = 0; i < 1000; i++)
     {
         random_device rd;
-        mt19937 gen(rd());
-        
-        char ch;
-        int randNumber = gen() % 4;
-        
-        if     (randNumber == 0) ch = 'w';
-        else if(randNumber == 1) ch = 's';
-        else if(randNumber == 2) ch = 'a';
-        else if(randNumber == 3) ch = 'd';
+        mt19937 generator(rd());
 
-        Position empty = ~*this;
-        move(ch, empty);
+        int randNumber = generator() % 4;
+
+        if      (randNumber == 0) {command = 'w';}
+        else if (randNumber == 1) {command = 's';}
+        else if (randNumber == 2) {command = 'a';}
+        else if (randNumber == 3) {command = 'd';}
+        
+        logic();
     }
     
 }

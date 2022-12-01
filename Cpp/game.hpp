@@ -16,7 +16,8 @@ class Game
         std::array<std::array<int, 4>, 4> board;
         struct Position{int x; int y;};
 
-        void initBoard();
+        void init();
+        void unorder();
         void print();
         void input();
         void logic();
