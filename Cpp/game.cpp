@@ -10,12 +10,6 @@ Game::Game()
     isFinished = false;
     init();
     unorder();
-
-    print();
-
-    cout << "Game keys : W, S, A, D" << endl;
-    cout << ">> " << "Enter a character to play : ";
-    cin >> command; 
 }
 
 void Game::init()
